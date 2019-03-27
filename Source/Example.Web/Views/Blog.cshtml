@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Blog>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using DangEasy.UCache
+@{
+    Layout = "Master.cshtml";
+
+    var posts = UCache.Instance.Fetch("blogPosts");
+
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+<section class="section">
+
+    <div class="container">
+
+        @Umbraco.RenderMacro("latestBlogposts",
+                     new
+                     {
+                         numberOfPosts = Model.Content.HowManyPostsShouldBeShown,
+                         startNodeId = Model.Content.Id
+                     })
+       
+    </div>
+
+</section>
