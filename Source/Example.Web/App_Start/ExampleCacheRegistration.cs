@@ -1,11 +1,9 @@
 ﻿using DangEasy.UCache;
-using System.Linq;
 using Umbraco.Core;
-using Umbraco.Web;
 
 namespace Example.Web.App_Start
 {
-    public class CacheRegistration : IApplicationEventHandler
+    public class ExampleCacheRegistration : IApplicationEventHandler
     {
         public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
@@ -13,18 +11,14 @@ namespace Example.Web.App_Start
 
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
+            // tell ucache your site node doctype
+            UCache.Instance.RegisterSiteNodeContentTypeAlias("home"); // will default to top level nodes if not set
+
             UCache.Instance.RegisterSingle("homepage", "//home");
             UCache.Instance.RegisterCollection("blogPosts", "//home/blog/blogpost");
 
-            UCache.Instance.RegisterSingle("homeNode", (rootNodeId) => MyContentService.GetHomeNode(rootNodeId));
-
-
-            //UCache.Instance.RegisterSingle("rootNode", (id) => {
-            //    var helper = new UmbracoHelper(UmbracoContext.Current);
-            //    var node = helper.TypedContentAtRoot().First();
-            //    return node;
-            //});
-
+            // register with a function
+            UCache.Instance.RegisterSingle("blog", (rootNodeId) => ExampleContentService.GetBlogLandingNode(rootNodeId));
         }
 
         public void OnApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)

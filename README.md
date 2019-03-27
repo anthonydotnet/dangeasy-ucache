@@ -3,18 +3,30 @@
 A caching package for Umbraco CMS to allow better performance. Caches tree crawling and xpath results.
 
 ## Examples
+### Enabling UCache
+Add this setting to your web.config.
+```
+<add key="UCache:Enabled" value="true" />
+```
+
 ### Registering content
 ```
+// tell UCache your site node doctype
+UCache.Instance.RegisterSiteNodeContentTypeAlias("home"); // will default to top level nodes if not set
+
+// register with xpath
 UCache.Instance.RegisterSingle("homepage", "//home");
 UCache.Instance.RegisterCollection("blogPosts", "//home/blog/blogpost");
 
-UCache.Instance.RegisterSingle("homeNode", (rootNodeId) => MyContentService.GetHomeNode(rootNodeId));
+// register with a function
+UCache.Instance.RegisterSingle("blogLanding", (rootNodeId) => ExampleContentService.GetBlogLandingNode(rootNodeId));
 ```
 
 ### Retreiving content
 ```
 var root = UCache.Instance.Get("homeNode"); 
 var posts = UCache.Instance.Fetch("blogPosts");
+var blog = UCache.Instance.Get("blog") as Blog;
 ```
 
 ## Cache Clearing Events

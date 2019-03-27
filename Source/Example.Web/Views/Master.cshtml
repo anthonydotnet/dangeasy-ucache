@@ -3,7 +3,7 @@
 @{
     Layout = null;
 
-    var root = UCache.Instance.Get("homeNode"); 
+    var blog = UCache.Instance.Get("blog") as Blog;
 
     var home = UCache.Instance.Get("homepage") as Home;
 
@@ -45,7 +45,7 @@
             }
             else
             {
-                <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename : @root.Name</a>
+                <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename and @blog.Name</a>
             }
         </div>
 

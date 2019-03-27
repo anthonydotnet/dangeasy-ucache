@@ -276,7 +276,9 @@
     <Content Include="config\Lang\zh-CN.user.xml" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data\Models\Blog.generated.cs" />
@@ -294,8 +296,8 @@
     <Compile Include="App_Data\Models\Person.generated.cs" />
     <Compile Include="App_Data\Models\Product.generated.cs" />
     <Compile Include="App_Data\Models\Products.generated.cs" />
-    <Compile Include="App_Start\CacheRegistration.cs" />
-    <Compile Include="App_Start\MyContentService.cs" />
+    <Compile Include="App_Start\ExampleCacheRegistration.cs" />
+    <Compile Include="App_Start\ExampleContentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

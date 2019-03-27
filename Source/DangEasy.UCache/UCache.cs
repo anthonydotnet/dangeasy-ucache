@@ -13,6 +13,7 @@ namespace DangEasy.UCache
 {
     public interface IUCache
     {
+        void RegisterSiteNodeContentTypeAlias(string contentTypeAlias);
         void RegisterSingle(string alias, string xpath);
         void RegisterSingle(string alias, Func<int, IPublishedContent> hydrationFunction);
         void RegisterCollection(string alias, string xpath);
@@ -30,6 +31,7 @@ namespace DangEasy.UCache
         internal Dictionary<string, string> _xPaths;
         internal Dictionary<string, Func<int, IPublishedContent>> _hydrationFunctions;
         INodeGetter _nodeGetter;
+        string _siteNodeContentTypeAlias;
 
         #region Instance
         private static UCache _instance;
@@ -57,6 +59,11 @@ namespace DangEasy.UCache
 
 
         #region Registration
+
+        public void RegisterSiteNodeContentTypeAlias(string contentTypeAlias)
+        {
+            _siteNodeContentTypeAlias = contentTypeAlias;
+        }
 
         public void RegisterSingle(string alias, string xpath)
         {
@@ -97,7 +104,6 @@ namespace DangEasy.UCache
 
             if (_xPaths.ContainsKey(alias))
             {
-
                 var xpath = _xPaths[alias];
                 result = _nodeGetter.Get(xpath, rootNodeId);
 
@@ -116,7 +122,6 @@ namespace DangEasy.UCache
         }
 
        
-
 
         // Fetch
         public IEnumerable<IPublishedContent> Fetch(string alias) 
@@ -163,6 +168,7 @@ namespace DangEasy.UCache
 
             IPublishedContent rootNode;
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+
             if (sites != null)
             {
                 var node = umbracoHelper.TypedContent(NodeHelper.EnsureNodeId(nodeId));
@@ -183,17 +189,29 @@ namespace DangEasy.UCache
 
             // get here if there were no cached Site nodes, OR the Site node was not found in the dictionary
             sites = new Dictionary<int, IPublishedContent>();
-            rootNode = umbracoHelper.TypedContent(NodeHelper.EnsureNodeId(nodeId));
+
+
+            // this needs to be configurable by node type alias because the "site node" migght be at level 2
+            if (!string.IsNullOrWhiteSpace(_siteNodeContentTypeAlias))
+            {
+                rootNode = umbracoHelper.TypedContent(NodeHelper.EnsureNodeId(nodeId)).AncestorOrSelf(_siteNodeContentTypeAlias); // top level node
+            }
+            else
+            {
+                rootNode = umbracoHelper.TypedContent(NodeHelper.EnsureNodeId(nodeId)).AncestorOrSelf(1);
+            }
 
             if (rootNode != null)
             {
                 // GetSiteNode might return null
                 sites.Add(rootNode.Id, rootNode);
+                Cache.Instance.Add(cacheKey, sites);
             }
 
-            Cache.Instance.Add(cacheKey, sites);
 
             return rootNode;
         }
+
+      
     }
 }
