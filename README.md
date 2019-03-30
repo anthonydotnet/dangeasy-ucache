@@ -18,7 +18,7 @@ Add this setting to your web.config.
 ### Registering content
 ```
 // tell UCache your site node doctype
-UCache.Instance.RegisterSiteNodeContentTypeAlias("home"); // will default to top level nodes if not set
+UCache.Instance.RegisterSiteNodeContentTypeAlias("site"); // will default to top level nodes if not set
 
 // register with xpath
 UCache.Instance.RegisterSingle("homepage", "//home");
@@ -30,9 +30,9 @@ UCache.Instance.RegisterSingle("blogLanding", (rootNodeId) => ExampleContentServ
 
 ### Retreiving content
 ```
-var root = UCache.Instance.Get("homeNode"); 
+var root = UCache.Instance.Get("homepage"); 
 var posts = UCache.Instance.Fetch("blogPosts");
-var blog = UCache.Instance.Get("blog") as Blog;
+var blog = UCache.Instance.Get("blogLanding") as Blog;
 ```
 
 ## Cache Clearing Events
