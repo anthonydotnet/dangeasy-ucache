@@ -30,7 +30,7 @@ UCache.Instance.RegisterSingle("blogLanding", (rootNodeId) => ExampleContentServ
 
 ### Retreiving content
 ```
-var root = UCache.Instance.Get("homepage"); 
+var home = UCache.Instance.Get("homepage"); 
 var posts = UCache.Instance.Fetch("blogPosts");
 var blog = UCache.Instance.Get("blogLanding") as Blog;
 ```
