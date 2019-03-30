@@ -91,7 +91,7 @@ module.exports = function(grunt) {
         },
         nugetpack: {
             dist: {
-                src: projectDir + pkg.name + '.csproj',
+                src: projectDir + pkg.name + '.nuspec',
                 dest: releaseDir + 'nuget/',
 				
 				options: {

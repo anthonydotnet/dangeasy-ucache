@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DangEasy.UCache</id>
+    <version>1.0.0</version>
+    <title>DangEasy.UCache</title>
+    <authors>Anthony Dang</authors>
+    <owners>Anthony Dang</owners>
+    <licenseUrl>https://github.com/anthonydotnet/dangeasy-ucache/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/anthonydotnet/dangeasy-ucache/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A caching package for Umbraco CMS. Automatically caches result of registered tree crawling and xpath results.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Umbraco Cache Caching Performance</tags>
+	<dependencies>
+      <dependency id="DangEasy.Caching.MemoryCache" version="2.0.0" />
+      <dependency id="UmbracoCms.Core" version="7.10.4" />
+    </dependencies>	
+  </metadata>
+  <files>
+    <file src="bin\release\DangEasy.UCache.dll" target="lib\net46" />
+  </files>
+</package>
