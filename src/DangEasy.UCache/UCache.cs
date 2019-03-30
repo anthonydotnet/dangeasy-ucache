@@ -30,11 +30,25 @@ namespace DangEasy.UCache
     {
         internal Dictionary<string, string> _xPaths;
         internal Dictionary<string, Func<int, IPublishedContent>> _hydrationFunctions;
-        INodeGetter _nodeGetter;
-        string _siteNodeContentTypeAlias;
+
+        internal INodeGetter _nodeGetterInternal;
+        internal INodeGetter _nodeGetter
+        {
+            get
+            {
+                if (_nodeGetterInternal == null)
+                {
+                    _nodeGetterInternal = Resolver.NodeGetter();
+                }
+
+                return _nodeGetterInternal;
+            }
+        }
+
+        protected string _siteNodeContentTypeAlias;
 
         #region Instance
-        private static UCache _instance;
+        protected static UCache _instance;
         public static IUCache Instance
         {
             get
@@ -48,9 +62,9 @@ namespace DangEasy.UCache
             }
         }
 
-        private UCache()
+        protected UCache()
         {
-            _nodeGetter = Resolver.NodeGetter();
+
             _xPaths = new Dictionary<string, string>();
             _hydrationFunctions = new Dictionary<string, Func<int, IPublishedContent>>();
         }
@@ -208,10 +222,7 @@ namespace DangEasy.UCache
                 Cache.Instance.Add(cacheKey, sites);
             }
 
-
             return rootNode;
         }
-
-      
     }
 }

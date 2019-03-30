@@ -328,6 +328,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-Source/Example.Web/App_Data/
-Source/Example.Web/Umbraco/
-Source/Example.Web/Umbraco_Client/
+src/Example.Web/App_Data/
+src/Example.Web/Umbraco/
+src/Example.Web/Umbraco_Client/

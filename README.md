@@ -1,6 +1,12 @@
 # dangeasy-ucache
 
-A caching package for Umbraco CMS to allow better performance. Caches tree crawling and xpath results.
+A caching package for Umbraco CMS. Automatically caches result of registered tree crawling and xpath results.
+
+# Installation
+Use NuGet to install the [package](https://www.nuget.org/packages/DangEasy.UCache/).
+```
+PM> Install-Package DangEasy.UCache
+```
 
 ## Examples
 ### Enabling UCache
