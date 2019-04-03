@@ -5,38 +5,25 @@ using Umbraco.Core.Services;
 using Umbraco.Core.Publishing;
 using Umbraco.Core.Events;
 using Umbraco.Core.Models;
+using Umbraco.Web;
+using Umbraco.Web.Cache;
+using Umbraco.Core.Sync;
+using Umbraco.Core.Cache;
 
-namespace DangEasy.Umbraco.Geto.SIPublishedContentarIPublishedContentup
+namespace DangEasy.UCache.Startup
 {
     public class UCacheStartup : IApplicationEventHandler
     {
         public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
-            ContentService.Published += ContentService_Published;
-            ContentService.UnPublished += ContentService_UnPublished; 
-            ContentService.Moved += ContentService_Moved;
-            ContentService.Trashed += ContentService_Trashed;
+            PageCacheRefresher.CacheUpdated += PageCacheRefresher_CacheUpdated;
         }
 
-        private void ContentService_Trashed(IContentService sender, MoveEventArgs<IContent> e)
+        private void PageCacheRefresher_CacheUpdated(PageCacheRefresher sender, CacheRefresherEventArgs e)
         {
-            ClearCache();
+            Cache.Instance.RemoveByPrefix(typeof(NodeGetterCachedProxy).ToString());
         }
-
-        private void ContentService_Moved(IContentService sender, MoveEventArgs<IContent> e)
-        {
-            ClearCache();
-        }
-
-        private void ContentService_UnPublished(IPublishingStrategy sender, PublishEventArgs<IContent> e)
-        {
-            ClearCache();
-        }
-
-        private void ContentService_Published(IPublishingStrategy sender, PublishEventArgs<IContent> e)
-        {
-            ClearCache();
-        }
+        
 
         public void OnApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
@@ -44,11 +31,6 @@ namespace DangEasy.Umbraco.Geto.SIPublishedContentarIPublishedContentup
 
         public void OnApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
-        }
-
-        private   void ClearCache()
-        {
-            Cache.Instance.RemoveByPrefix(typeof(NodeGetterCachedProxy).ToString());
         }
     }
 }
