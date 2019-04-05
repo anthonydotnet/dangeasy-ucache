@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DangEasy.UCache</RootNamespace>
     <AssemblyName>DangEasy.UCache</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -56,11 +56,11 @@
     <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
       <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
-    <Reference Include="DangEasy.Caching.MemoryCache, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DangEasy.Caching.MemoryCache.2.0.0\lib\net46\DangEasy.Caching.MemoryCache.dll</HintPath>
+    <Reference Include="DangEasy.Caching.MemoryCache, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DangEasy.Caching.MemoryCache.2.1.0\lib\net452\DangEasy.Caching.MemoryCache.dll</HintPath>
     </Reference>
     <Reference Include="DangEasy.Interfaces.Caching, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DangEasy.Interfaces.Caching.2.0.0\lib\net46\DangEasy.Interfaces.Caching.dll</HintPath>
+      <HintPath>..\packages\DangEasy.Interfaces.Caching.2.1.0\lib\net452\DangEasy.Interfaces.Caching.dll</HintPath>
     </Reference>
     <Reference Include="Examine, Version=0.1.68.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Examine.0.1.68.0\lib\Examine.dll</HintPath>

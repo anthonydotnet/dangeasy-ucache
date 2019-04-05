@@ -1,13 +1,7 @@
 ﻿using DangEasy.Caching.MemoryCache;
 using DangEasy.UCache.Services;
 using Umbraco.Core;
-using Umbraco.Core.Services;
-using Umbraco.Core.Publishing;
-using Umbraco.Core.Events;
-using Umbraco.Core.Models;
-using Umbraco.Web;
 using Umbraco.Web.Cache;
-using Umbraco.Core.Sync;
 using Umbraco.Core.Cache;
 
 namespace DangEasy.UCache.Startup
