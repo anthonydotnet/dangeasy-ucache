@@ -36,8 +36,7 @@ var blog = UCache.Instance.Get("blogLanding") as Blog;
 ```
 
 ## Cache Clearing Events
-Cache clearing is aggressive. All content which is registered will be cleared on the following events. 
-- Published
-- Unpublished
-- Moved
-- Trashed
+Cache clearing is aggressive. All content which is registered will be cleared on the following event: 
+```
+PageCacheRefresher.CacheUpdated
+```
